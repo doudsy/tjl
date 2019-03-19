@@ -1,0 +1,695 @@
+﻿
+    <link href="/server/sCreateRepurchaseTask.css" rel="stylesheet" />
+
+
+<asp:Content ID="CMain" ContentPlaceHolderID="CPHM" runat="server">
+    <%-- 创建回购任务 --%>
+    <div id="editTaskInfo">
+        <%-- 进度条 --%>
+        <div>
+            <div class="titleDiv">填写信息</div>
+            <div class="progressDiv">
+                <div class="progressText type">1</div>
+                <div class="progressRedLine"></div>
+                <div class="progressText info">2</div>
+                <div class="progressRedLine"></div>
+                <div class="progressText pay">3</div>
+                <div class="progressLine"></div>
+                <div class="progressText publishSuccess">4</div>
+            </div>
+            <hr class="divideLine" />
+        </div>
+        <%-- 1.商品信息模块 --%>
+        <div class="taskInfoTitle">1.商品信息</div>
+        <div class="goodsInfoDiv">
+            <div id="mainDoodsInfoBlock" class="mainDoodsInfo">
+                <div>
+                    <label>商品名称：</label>
+                    <input type="text" name="goodName" id="goodName" class="txtInput" />
+                </div>
+                <div>
+                    <label>商品链接：</label>
+                    <input type="text" name="goodUrl" id="goodUrl" class="txtInput" />
+                </div>
+                <div class="priceDiv">
+                    <div>
+                        <label class="floatLabel">成交价格：</label>
+                        <div class="priceDiv_input">
+                            <input type="text" name="goodPrice" id="goodPrice" class="numInput" />
+                            <span>元</span>
+                        </div>
+                        <span class="goodTxtTip">（每单总金额<span id="allMoney" class="moneyStyle">0</span>元（不含运费））</span>
+                    </div>
+                    <div>
+                        <label class="floatLabel">展示价格：</label>
+                        <div class="priceDiv_input">
+                            <input type="text" name="displayPrice" id="displayPrice" class="numInput" />
+                            <span>元</span>
+                        </div>
+                        <span class="goodTxtTip">(务必亲自在手机端搜索，保证价格准确)</span>
+                    </div>
+
+                </div>
+                <div class="priceDiv">
+                    <div>
+                        <label>单拍数量：</label>
+                        <div>
+                            <input type="text" name="goodCount" id="goodCount" class="numInput" />
+                            <span>件</span>
+                        </div>
+                        <span>（用户拍下价格，不同等级卖号看到商品价格不同，取最大值</span>
+                    </div>
+                    <div>
+                        <label>商品邮费：</label>
+                        <div>
+                            <input type="text" name="goodpPostage" id="goodpPostage" class="numInput" />
+                            <span>元</span>
+                        </div>
+                        <span>(如订单拍下需邮费，则按邮费金额填写，如邮费是0也可不用填写)</span>
+                    </div>
+
+                </div>
+                <div style="margin-top: 15px;">
+                    <label class="floatLabel">商品属性：</label>
+                    <input type="text" name="skuValue" id="skuValue" class="shortTxtInput" placeholder="尺码" />
+                    <span class="goodTxtTip">（多个属性请用";"分隔）</span>
+                </div>
+                <%-- 商品图片 --%>
+                <div id="imgList" data-value="imgList" style="margin-top: 20px;">
+                    <label class="floatLabel">商品主图：</label>
+                    <%-- 图片存放div --%>
+                    <div id="mainGoodImgDiv" class="mainGoodImgDiv">
+                        <div class="imgBackNull" id="imgBackNull">
+                            <img src="/img/Program/null.jpg" class="imgUploadStyle" />
+                        </div>
+                    </div>
+                    <%--添加图片按钮 --%>
+                    <div class="addImgBtn">
+                        <span class="addImgSpan">+</span>
+                        <input type="file" class="addImg" id="addImg" data-id="imgList" accept="image/gif,image/jpeg,image/png,image/bmp" />
+                    </div>
+                </div>
+            </div>
+            <%-- 附加商品 --%>
+            <div id="addtionalGoodBloack" style="margin-top: 15px;">
+                <div class="addtionalGoodText">
+                    <span>附加商品</span>
+                    <span class="goodTxtTip">(最多可增加两个商品)</span>
+                    <div class="addMoreGoodBtn">
+                        <input type="button" class="addGoodBtn" />
+                        <span class="btnIconStyle">+</span>
+
+                    </div>
+                </div>
+            </div>
+            <ul id="addGood_ul">
+                <li class="addGood_li">
+                    <div class="mainDoodsInfo">
+                        <div>
+                            <label>商品名称：</label>
+                            <input type="text" name="addGoodName" class="txtInput" />
+                        </div>
+                        <div>
+                            <label>商品链接：</label>
+                            <input type="text" name="addGoodUrl" class="txtInput" />
+                        </div>
+                        <div class="priceDiv">
+                            <div>
+                                <label class="floatLabel">成交价格：</label>
+                                <div class="priceDiv_input">
+                                    <input type="text" name="addGoodPrice" class="numInput" />
+                                    <span>元</span>
+                                </div>
+                                <span class="goodTxtTip">（每单总金额<span class="moneyStyle">0</span>元（不含运费））</span>
+                            </div>
+                            <div>
+                                <label class="floatLabel">展示价格：</label>
+                                <div class="priceDiv_input">
+                                    <input type="text" name="addDisplayPrice" class="numInput" />
+                                    <span>元</span>
+                                </div>
+                                <span class="goodTxtTip">(务必亲自在手机端搜索，保证价格准确)</span>
+                            </div>
+
+                        </div>
+                        <div class="priceDiv">
+                            <div>
+                                <label>单拍数量：</label>
+                                <div>
+                                    <input type="text" name="addGoodCount" class="numInput" />
+                                    <span>件</span>
+                                </div>
+                                <span>（用户拍下价格，不同等级卖号看到商品价格不同，取最大值</span>
+                            </div>
+                            <div>
+                                <label>商品邮费：</label>
+                                <div>
+                                    <input type="text" name="addGoodpPostage" class="numInput" />
+                                    <span>元</span>
+                                </div>
+                                <span>(如订单拍下需邮费，则按邮费金额填写，如邮费是0也可不用填写)</span>
+                            </div>
+
+                        </div>
+                        <div style="margin-top: 15px;">
+                            <label class="floatLabel">商品属性：</label>
+                            <input type="text" name="addSkuValue" class="shortTxtInput" placeholder="尺码" />
+                            <span class="goodTxtTip">（多个属性请用";"分隔）</span>
+                        </div>
+                        <%-- 商品图片 --%>
+                        <div data-value="imgList" style="margin-top: 20px;">
+                            <label class="floatLabel">商品主图：</label>
+                            <%-- 图片存放div --%>
+                            <div id class="mainGoodImgDiv">
+                                <div class="imgBackNull">
+                                    <img src="/img/Program/null.jpg" class="imgUploadStyle" />
+                                </div>
+                            </div>
+                            <%--添加图片按钮 --%>
+                            <div class="addImgBtn">
+                                <span class="addImgSpan">+</span>
+                                <input type="file" class="addImg" id="" data-id="imgList" accept="image/gif,image/jpeg,image/png,image/bmp" />
+                            </div>
+                            <button type="button" class="deleteImgBtn">
+                                <img src="/img/Program/del.png" />
+
+                            </button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <%-- 2.搜索商品条件 --%>
+        <div class="taskInfoTitle">2.搜索商品条件</div>
+        <div class="goodsSearchDiv">
+            <div style="margin: 15px;">
+                <div class="conditionBox">
+                    <div>
+                        <label>排序方式：</label>
+                        <div class="conditionInnerDiv">
+                            <div>
+                                <input type="radio" name="sortWay" value="销量" />
+                                <span>销量</span>
+                            </div>
+                            <div>
+                                <input type="radio" name="sortWay" value="综合" />
+                                <span>综合</span>
+                            </div>
+                        </div>
+                        <span>( 当商品综合排序不易搜索时,建议选择销量排序 )</span>
+                    </div>
+                </div>
+                <div class="conditionBox">
+                    <div>
+                        <label>价格区间：</label>
+                        <input type="text" name="priceRange" value="" />-
+                        <input type="text" name="priceRange" value="" />
+                    </div>
+                    <div>
+                        <label>商品所在地：</label>
+                        <select id="address_select" class="goodAddress">
+                            <option value="value">全国</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="conditionBox">
+                    <div>
+                        <label class="floatLabel">折扣与服务：</label>
+                        <label>
+                            <input type="checkbox" value="包邮" />
+                            <span class="tagSpan">包邮</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="conditionBox">
+                    <label class="floatLabel">订单留言：</label>
+                    <textarea id="orderMsg" maxlength="30" class="orderMsg"></textarea>
+                    <span>( 用户拍下商品需要填写的买家留言、不建议大批量使用 )</span>
+                </div>
+            </div>
+        </div>
+
+        <%-- <%--3.填写任务类型与数量    只有一种类型
+        <div class="taskInfoTitle">3.填写任务类型与数量</div>
+        <div class="taskTypeDiv">
+            <div>
+                <label>
+                    <input type="checkbox" name="repurchaseTask" value="" />
+                    回购任务
+                </label>
+                <span>回购为3元/个</span>
+            </div>
+            <ul id="searchKeyWord_ul">
+                <li class="searchKeyWord_li">
+                    <span>搜索关键字1：</span>
+                    <input type="text" name="KeyWords" class="KeyWordInput" /> 
+                    <span>数量：</span>
+                    <input type="text" name="searchCount" class="searchInput" />
+                    <div class="addMoreSearchBtn">
+                        <input type="button" id="addSearchBtn" class="addSearchBtn"/>
+                        <span class="addSearchIcon">+</span>
+                    </div>
+                    <div class="addConditionType">
+                        <label>附加：</label>
+                        <div class="addTypeBlock">
+                            <label>
+                                <input type="checkbox" name="addType" data-price="0.5" value="收藏商品"/>
+                                收藏商品
+                            </label>
+                            <label>
+                                <input type="checkbox" name="addType" data-price="0.5" value="收藏商品"/>
+                                收藏商品
+                            </label>
+                            <label>
+                                <input type="checkbox" name="addType" data-price="0.5" value="收藏商品"/>
+                                收藏商品
+                            </label>
+                        </div>
+                    </div>
+                </li>
+                <li class="searchKeyWord_li">
+                    <span>搜索关键字2：</span>
+                    <input type="text" name="KeyWords" class="KeyWordInput" /> 
+                    <span>数量：</span>
+                    <input type="text" name="searchCount" class="searchInput" />
+                    <button type="button" class="deleteSearchBtn" >
+                        <img src="/img/Program.del.png"/>
+                    </button>
+                    <div class="addConditionType">
+                        <label>附加：</label>
+                        <div class="addTypeBlock">
+                            <label>
+                                <input type="checkbox" name="addType" data-price="0.5" value="收藏商品"/>
+                                收藏商品
+                            </label>
+                            <label>
+                                <input type="checkbox" name="addType" data-price="0.5" value="收藏商品"/>
+                                收藏商品
+                            </label>
+                            <label>
+                                <input type="checkbox" name="addType" data-price="0.5" value="收藏商品"/>
+                                收藏商品
+                            </label>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+           
+            
+
+        </div>--%>
+
+
+        <%-- 3.任务类型与数量   3种类型的 --%>
+        <div class="taskInfoTitle">3.填写任务类型与数量</div>
+        <div class="taskTypeDiv">
+            <%-- 普通好评任务 --%>
+            <div class="normalEvaluationTask">
+                <div>
+                    <label>
+                        <input type="checkbox" name="" value="" id="normalCheckbox" />
+                        <span>普通好评任务</span>
+                    </label>
+                    <span>（默认为5星无评价内容，如需评价请备注，但不可规定评价内容）</span>
+                </div>
+                <ul id="searchKeyWord_ul">
+                    <li class="searchKeyWord_li">
+                        <span>搜索关键字1：</span>
+                        <input type="text" name="KeyWords" class="KeyWordInput" />
+                        <span>数量：</span>
+                        <input type="text" name="searchCount" class="searchInput" />
+                        <div class="addMoreSearchBtn">
+                            <input type="button" id="addSearchBtn" class="addSearchBtn" />
+                            <span class="addSearchIcon">+</span>
+                        </div>
+                        <div class="addConditionType">
+                            <label>附加：</label>
+                            <div class="addTypeBlock">
+                                <label>
+                                    <input type="checkbox" name="addType" data-price="0.5" value="收藏商品" />
+                                    收藏商品
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="addType" data-price="0.5" value="收藏商品" />
+                                    收藏商品
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="addType" data-price="0.5" value="收藏商品" />
+                                    收藏商品
+                                </label>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="searchKeyWord_li">
+                        <span>搜索关键字2：</span>
+                        <input type="text" name="KeyWords" class="KeyWordInput" />
+                        <span>数量：</span>
+                        <input type="text" name="searchCount" class="searchInput" />
+                        <button type="button" class="deleteSearchBtn">
+                            <img src="/img/Program.del.png" />
+                        </button>
+                        <div class="addConditionType">
+                            <label>附加：</label>
+                            <div class="addTypeBlock">
+                                <label>
+                                    <input type="checkbox" name="addType" data-price="0.5" value="收藏商品" />
+                                    收藏商品
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="addType" data-price="0.5" value="收藏商品" />
+                                    收藏商品
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="addType" data-price="0.5" value="收藏商品" />
+                                    收藏商品
+                                </label>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <%-- 文字好评任务 --%>
+            <div class="txtEvaluationTask">
+                <div>
+                    <label>
+                        <input type="checkbox" value="10" id="txtCheckbox" />
+                        <span>文字好评任务</span>
+                    </label>
+                    <span>(文字好评任务 +1金/单)</span>
+                    <div class="addMoreSearchBtn">
+                        <input type="button" class="addSearchBtn" />
+                        <span class="addSearchIcon">+</span>
+                    </div>
+                </div>
+                <ul id="txtEvaluationTask_ul">
+                    <li class="searchKeyWord_li">
+                        <span>搜索关键字1：</span>
+                        <input type="text" name="KeyWords" class="KeyWordInput" />
+                        <span>数量：</span>
+                        <input type="text" name="searchCount" class="searchInput" disabled />
+                        <span>注意：当同一个搜索关键字【添加订单】超过两单,可能会造成评价重复的情况,请知悉。如有疑问,请联系客服。</span>
+                        <div>
+                            <label class="floatLabel">文字好评内容</label>
+                            <textarea class="txtEvaluationMsg" maxlength="200"></textarea>
+                        </div>
+                    </li>
+                    <li class="searchKeyWord_li">
+                        <span>搜索关键字2：</span>
+                        <input type="text" name="KeyWords" class="KeyWordInput" />
+                        <span>数量：</span>
+                        <input type="text" name="searchCount" class="searchInput" disabled />
+                        <span>注意：当同一个搜索关键字【添加订单】超过两单,可能会造成评价重复的情况,请知悉。如有疑问,请联系客服。</span>
+                        <button type="button" class="deleteSearchBtn">
+                            <img src="/img/Program.del.png" />
+                        </button>
+                        <div>
+                            <label class="floatLabel">文字好评内容</label>
+                            <textarea class="txtEvaluationMsg" maxlength="200"></textarea>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <%-- 图文好评任务 --%>
+            <div class="imgEvaluationTask">
+                <div>
+                    <label>
+                        <input type="checkbox" value="10" id="imgCheckbox" />
+                        <span>图文好评任务</span>
+                    </label>
+                    <span>(指定好评关键字任务佣金 +3金/单)</span>
+                    <div class="addMoreSearchBtn">
+                        <input type="button" class="addSearchBtn" />
+                        <span class="addSearchIcon">+</span>
+                    </div>
+                </div>
+                <ul class="imgEvaluationTask_ul">
+                    <li class="searchKeyWord_li">
+                        <span>搜索关键字1：</span>
+                        <input type="text" name="KeyWords" class="KeyWordInput" />
+                        <span>数量：</span>
+                        <input type="text" name="searchCount" class="searchInput" disabled />
+                        <div>
+                            <label>上传图片：</label>
+                            <div>
+                                <div class="imgBackNull">
+                                    <img src="/img/Program/null.jpg" class="imgUploadStyle" />
+                                </div>
+                                <div class="addImgBtn">
+                                    <span class="addImgSpan">+</span>
+                                    <input type="file" class="addImg" id="" data-id="imgList" accept="image/gif,image/jpeg,image/png,image/bmp" />
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="floatLabel">文字好评内容</label>
+                            <textarea class="txtEvaluationMsg" maxlength="200"></textarea>
+                        </div>
+                    </li>
+                    <li class="searchKeyWord_li">
+                        <span>搜索关键字1：</span>
+                        <input type="text" name="KeyWords" class="KeyWordInput" />
+                        <span>数量：</span>
+                        <input type="text" name="searchCount" class="searchInput" disabled />
+                        <button type="button" class="deleteSearchBtn">
+                            <img src="/img/Program.del.png" />
+                        </button>
+                        <div>
+                            <label>上传图片：</label>
+                            <div>
+                                <div class="imgBackNull">
+                                    <img src="/img/Program/null.jpg" class="imgUploadStyle" />
+                                </div>
+                                <div class="addImgBtn">
+                                    <span class="addImgSpan">+</span>
+                                    <input type="file" class="addImg" id="" data-id="imgList" accept="image/gif,image/jpeg,image/png,image/bmp" />
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="floatLabel">文字好评内容</label>
+                            <textarea class="txtEvaluationMsg" maxlength="200"></textarea>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <%-- 4.推送设置 --%>
+        <div class="taskInfoTitle">4.推送设置</div>
+        <div class="pushSetDiv">
+            <div>
+                <label>开始时间：</label>
+                <input type="text" id="beginTime" class="beginTime" placeholder="请选择开始时间" readonly />
+            </div>
+            <div>
+                <div>开始时间</div>
+                <div>
+                    <label>
+                        <input type="radio" name="pushWay" />
+                        <span>审核后一次性推送</span>
+                    </label>
+                    <span>（订单中的单数会在审核后被一次性推送）</span>
+                </div>
+                <div>
+                    <label>
+                        <input type="radio" name="pushWay" />
+                        <span>指定时间点推送</span>
+                    </label>
+                    <span>（订单中的单数会按下列时间要求推送）</span>
+                </div>
+            </div>
+            <ul id="pointTime_ul">
+                <li class="pointTime_li">
+                    <div>
+                        <div>
+                            <label>时间点：</label>
+                            <input type="text" name="pushTime" class="pushInput" />
+                        </div>
+                        <div>
+                            <label>数量：</label>
+                            <input type="text" name="pushCount" class="pushInput" />
+                        </div>
+                        <span>总任务数量<span id="allTaskCount" class="allTaskCount">0</span>单</span>
+                        <div>
+                            <input type="button" class="addSearchBtn" />
+                            <span class="addIconStyle">+</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="pointTime_li">
+                    <div>
+                        <div>
+                            <label>时间点：</label>
+                            <input type="text" name="pushTime" class="pushInput" />
+                        </div>
+                        <div>
+                            <label>数量：</label>
+                            <input type="text" name="pushCount" class="pushInput" />
+                        </div>
+                        <button type="button" class="deleteSearchBtn">
+                            <img src="/img/Program.del.png" />
+                        </button>
+                    </div>
+                </li>
+            </ul>
+            <div>
+                <div class="setOrderTime">设置下单时间</div>
+                <ul id="reBuyStyle_ul">
+                    <li>
+                        <label>
+                            <input type="radio" name="reBuyWay" value="" id="nextDay" />
+                            <span>次日回购（2元/单）</span>
+                        </label>
+                        <span>（根据会员接单提交的时间，第二天回购下单）</span>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="reBuyWay" value="" id="" />
+                            <span>日回购（5元/单）</span>
+                        </label>
+                        <select>
+                            <option value="value">text</option>
+                        </select>
+                        <span>（根据会员接单提交的时间，如选择2天后回购下单,1号提交，3号回购下单，最大可选10天）</span>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="reBuyWay" value="" id="" />
+                            <span>指定回购（6元/单）</span>
+                        </label>
+                        <input type="text" id="repurchaseTime" value="" placeholder="请选择指定回购日期" />
+                        <span>（双十一预售任务，请在这里设置好时间）</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <%-- 5.增值服务 --%>
+        <div class="taskInfoTitle">5.增值服务</div>
+        <div class="addServiceDiv">
+            <div>
+                <div>
+                    <label>赏金：</label>
+                    <input type="text" id="reward" />
+                    <span>元/单</span>
+                    <span>(每单加赏金最低1金,最高加赏金金额为50金)</span>
+                </div>
+                <div>
+                    <label>附加：</label>
+                    <input type="checkbox" id="preView" />
+                    <span>订单优先审核</span>
+                </div>
+            </div>
+            <div>
+                <div class="otherSetBlock">
+                    <label>千人千面设置</label>
+                    <span>（建议勾选"开通花呗的买号",安全性和权重非常高）</span>
+                    <span class="arrowIcon" id="arrowIcon">></span>
+                </div>
+                <ul id="otherSet_ul">
+                    <li>
+                        <label>
+                            <input type="checkbox" />
+                            <span class="tagSpan">花呗号</span>
+                        </label>
+                        <span>（仅限花呗号,+2金/单）</span>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" />
+                            <span class="tagSpan">类目</span>
+                        </label>
+                        <span>（平台会两周更新买手浏览和购物足迹类目，建议勾选。+0.5金/单）</span>
+                        <div id="classList">
+                            <label class="classLabel">
+                                <input type="checkbox" value="" />珠宝首饰</label>
+                        </div>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" />
+                            <span class="tagSpan">年龄</span>
+                        </label>
+                        <span>（年龄范围,+0.5金/单）</span>
+                        <div id="ageList">
+                            <label class="ageLabel">
+                                <input type="radio" name="age" value="" />
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" />
+                            <span class="tagSpan">性别</span>
+                        </label>
+                        <span>（限制性别，+1金/单）</span>
+                        <div id="sexList">
+                            <label class="ageLabel">
+                                <input type="radio" name="age" value="" />
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" />
+                            <span class="tagSpan">买号等级</span>
+                        </label>
+                        <span>（钻石以上等级可接该任务,+1金/单）</span>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox" />
+                            <span class="tagSpan">类目</span>
+                        </label>
+                        <span>（勾选后可接该任务,+1金/单）</span>
+                        <div id="areaList">
+                            <label class="classLabel">
+                                <input type="checkbox" value="" />北京
+                            </label>
+                            <label class="classLabel">
+                                <input type="checkbox" value="" />北京
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <%-- 6.附加要求 --%>
+        <div class="taskInfoTitle">6.附加要求</div>
+        <div class="otherRequiresDiv">
+            <div>
+                <div>
+                    <label>备注：</label>
+                    <textarea placeholder="请输入....." maxlength="200" id="otherMsg" class="otherMsg"></textarea>
+                </div>
+                <div>
+                    <span>如有需要备注可添加图片，最多可添加3张，图片中不要显示店铺名或商品名，避免用户直接搜索！(最多可添加3张图片，单张图片大小在2M以内，支持jpg,gif,png格式)</span>
+                </div>
+            </div>
+            <div>
+                <label>上传图片：</label>
+                <div id="otherImg" >
+                    <div class="imgBackNull">
+                        <img src="/img/Program/null.jpg" class="imgUploadStyle" />
+                    </div>
+                </div>
+                <%--添加图片按钮 --%>
+                <div class="addImgBtn">
+                    <span class="addImgSpan">+</span>
+                    <input type="file" class="addImg" id="" data-id="imgList" accept="image/gif,image/jpeg,image/png,image/bmp" />
+                </div>
+            </div>
+        </div>
+
+        <%-- 按钮 --%>
+        <div>
+            <input type="button"  value="上一步" class="preStepBtn" id="preBtn"/>
+            <input type="button"  value="下一步" class="nextStepBtn" id="nextBtn"/>
+        </div>
+    </div>
+</asp:Content>

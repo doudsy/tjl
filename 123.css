@@ -1,0 +1,798 @@
+
+
+            /*公共样式*/
+            input::-webkit-input-placeholder {
+                font-size: 12px;
+            }
+
+            input::-moz-placeholder { /* Mozilla Firefox 19+ */
+                font-size: 12px;
+            }
+
+            input:-ms-input-placeholder { /* Internet Explorer 10+ */
+                font-size: 12px;
+            }
+
+            .clearFix {
+                content: " ";
+                display: inline-block;
+                clear: both;
+            }
+            button{
+                outline：none;
+                outline-color: rgba(255,255,255,0);
+            }
+
+            input[type="radio"] {
+                width: 18px;
+                height: 18px;
+                outline: none;
+                border: 1px solid #666666;
+                border-radius: 50%;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                position: inherit;
+            }
+
+                input[type="radio"]:checked {
+                    border: 1px solid #aa0000;
+                    border-radius: 50%;
+                    position: inherit;
+                }
+
+                    input[type='radio']:checked:before {
+                        content: '';
+                        display: inline-block;
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50%;
+                        background: #aa0000;
+                        position: absolute;
+                        top: 3px;
+                        left: 3px;
+                    }
+            input[type="checkbox"]{
+                -webkit-appearance:none;
+                -moz-appearance: none;
+                width: 14px;
+                height:14px;
+                vertical-align: middle;
+                border: 1px solid #666;
+                margin-bottom: 3px;
+                margin-left: 2px;
+            }
+            #editTaskInfo {
+                font-size: 14px;
+                color: #4c5260;
+                 width: 825px;
+                height: auto;
+                text-align: left;
+                margin: 0 auto;
+                margin-top: 16px;
+            }
+
+            .floatLabel {
+                float: left;
+               
+
+            }
+
+            .taskInfoTitle { /*任务标题*/
+                margin-top: 15px;
+                width: 100%;
+                height: 30px;
+                line-height: 30px;
+                border: 1px solid #c9cacc;
+                box-shadow: 2px 2px 4px #c7c7c7;
+                font-size: 15px;
+                color: #4c5260;
+                text-indent: 15px;
+                font-weight: bolder;
+            }
+
+
+            /*进度条*/
+            .titleDiv {
+                font-size: 22px;
+                margin-top: 15px;
+                border-left: 4px solid #aa0000;
+                padding-left: 20px;
+                color: #333;
+                display: inline-block;
+            }
+
+            .divideLine {
+                margin-top: 15px;
+                border-top: 1px solid #4c5260;
+            }
+
+            .progressDiv {
+                float: right;
+                height: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .progressLine {
+                width: 60px;
+                height: 2px;
+                background-color: #4c5260;
+                float: left;
+                margin-top: 10px;
+            }
+
+            .progressRedLine {
+                width: 60px;
+                height: 2px;
+                background-color: #aa0000;
+                float: left;
+                margin-top: 10px;
+            }
+
+            .progressText {
+                width: 20px;
+                height: 20px;
+                line-height: 20px;
+                text-align: center;
+                border-radius: 50%;
+                background-color: #4c5260;
+                color: white;
+                float: left;
+                position: relative;
+                margin-top: 10px;
+            }
+
+                .progressText.type, .progressText.info, .progressText.payCost {
+                    background-color: #aa0000;
+                }
+
+            .type:before {
+                content: '选择类型';
+                position: absolute;
+                top: -20px;
+                color: black;
+                width: 80px;
+                left: -32px;
+                font-size: 14px;
+            }
+
+            .info:before {
+                content: '填写信息';
+                position: absolute;
+                top: -20px;
+                color: black;
+                width: 80px;
+                left: -32px;
+                font-size: 14px;
+            }
+
+            .pay:before {
+                content: '支付费用';
+                position: absolute;
+                top: -20px;
+                color: black;
+                width: 80px;
+                left: -32px;
+                font-size: 14px;
+            }
+
+            .publishSuccess:before {
+                content: '发布成功';
+                position: absolute;
+                top: -20px;
+                color: black;
+                width: 80px;
+                left: -32px;
+                font-size: 14px;
+            }
+
+            /*主商品信息模块*/
+            .goodsInfoDiv {
+                width: 100%;
+                margin-top: 10px;
+                border: 1px solid #c7c7c7;
+                box-shadow: 2px 2px 4px #c7c7c7;
+            }
+
+            .mainDoodsInfo {
+                margin: 15px;
+            }
+
+            .txtInput {
+                width: 650px;
+                height: 23px;
+                line-height: 23px;
+                border: 1px solid #4c5260;
+            }
+
+            .numInput {
+                width: 48px;
+                height: 18px;
+                font-size: 13px;
+                border: none;
+            }
+
+            .priceDiv {
+                margin-top: 15px;
+                min-height: 26px;
+                display: flex;
+                display: -webkit-flex;
+                width: 94%;
+                align-content: space-between;
+            }
+
+                .priceDiv > div {
+                    flex: 0 1 50%;
+                    line-height: 26px;
+                }
+
+            .priceDiv_input {
+                float: left;
+                width: 70px;
+                height: 24px;
+                border: 1px solid #4c5260;
+                margin-left: 5px;
+            }
+
+            .goodTxtTip {
+                font-size: 12px;
+                color: #a7a7a7;
+                display: inline-block;
+                width: 190px;
+                margin-left: 5px;
+                line-height: 13px;
+            }
+
+            .moneyStyle {
+                color: #f68948;
+                text-decoration: underline;
+            }
+
+            .shortTxtInput {
+                width: 510px;
+                height: 24px;
+                font-size: 13px;
+                margin-left: 5px;
+                border: 1px solid #4c5260;
+                color: #4c5260;
+            }
+
+            .mainGoodImgDiv {
+                float: left;
+            }
+
+            .imgBack, .imgBackNull {
+                width: 100px;
+                height: 100px;
+                background: #d0d0d0;
+                margin-left: 5px;
+                display: inline-block;
+                position: relative;
+            }
+
+            .imgUploadStyle {
+                width: 100px;
+                height: 100px;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            .addImgBtn {
+                width: 60px;
+                height: 100px;
+                background: none;
+                margin-left: 5px;
+                display: inline-block;
+                position: relative;
+            }
+
+            .addImgSpan {
+                height: 40px;
+                background: none;
+                border: none;
+                font-size: 36px;
+                color: #777;
+                font-weight: lighter;
+                position: absolute;
+                top: 35px;
+                left: 20px;
+            }
+
+            .addImg {
+                opacity: 0;
+                width: 25px;
+                height: 40px;
+                position: absolute;
+                top: 35px;
+                left: 20px;
+            }
+            /*附加商品*/
+            ul{
+                list-style: none;
+                padding:0;
+                margin:0;
+            }
+            .addtionalGoodText {
+                padding-left: 15px;
+                height: 35px;
+                line-height: 35px;
+                border: 1px solid #c7c7c7;
+            }
+
+            .addMoreGoodBtn {
+                position: relative;
+                float: right;
+                margin-top: 3.5px;
+                margin-right: 15px;
+            }
+
+            .addGoodBtn {
+                width: 24px;
+                height: 24px;
+                font-size: 13px;
+                border-radius: 50%;
+                background: none;
+                border: 1px solid #4c4c4c;
+                float: left;
+                margin-top: 2px;
+            }
+
+            .btnIconStyle {
+                font-size: 26px;
+                color: #666;
+                position: absolute;
+                top: -4px;
+                left: 3.5px;
+                cursor: pointer;
+                font-weight: lighter;
+            }
+
+            .addGood_li {
+                border-top: 1px solid #c7c7c7;
+            }
+
+                .addGood_li:first-child {
+                    border: none;
+                }
+
+            .deleteImgBtn {
+                border: none;
+                background: none;
+                float: right;
+                margin-top: 80px;
+                cursor: pointer;
+            }
+
+                .deleteImgBtn > img {
+                    width: 27px;
+                }
+            /*搜索商品条件*/
+            .goodsSearchDiv {
+                width: 100%;
+                min-height: 200px;
+                border: 1px solid #c7c7c7;
+                box-shadow: 2px 2px 4px #c7c7c7;
+                margin-top: 10px;
+            }
+
+            .conditionBox {
+                margin-bottom: 15px;
+                width: 100%;
+            }
+            .sortDiv{
+                width: 215px;
+                height: 24px;
+                line-height: 24px;
+                float: left;
+            }
+
+            .conditionInnerDiv {
+                float: right;
+            }
+
+            .sortRadio {
+                display: inline-block;
+                width: 70px;
+                height: 26px;
+            }
+            .sortLabel{
+                position: relative;
+                font-size:12px;
+                color:#333;
+            }
+            .commonTip {
+                font-size: 12px;
+                color: #a7a7a7;
+                min-width: 270px;
+                margin-top: 5px;
+                line-height: 13px;
+                margin-left: 5px;
+                display: inline-block;
+            }
+
+            .priceRangeInput {
+                width: 70px;
+                height: 24px;
+                line-height: 24px;
+                font-size: 14px;
+                border: 1px solid #4c5260;
+            }
+
+            .goodAddress {
+                width: 140px;
+                height: 24px;
+                border: 1px solid #4c5260;
+            }
+            .disCountDiv{
+                min-height: 20px;
+                line-height: 23px;
+            }
+            .tagSpan{
+                font-size:12px;
+                padding-left: 1.5px;
+            }
+            .orderMsg {
+                width: 250px;
+                height: 40px;
+                font-size: 12px;
+                float: left;
+                border: 1px solid #333;
+                resize: none;
+            }
+
+            .msgTip {
+                width: auto;
+                color: #a7a7a7;
+                font-size: 12px;
+                line-height: 13px;
+                margin-top: 15px;
+                display: inline-block;
+                margin-left: 5px;
+            }
+
+            /*3.任务类型与数量*/
+            .taskTypeDiv {
+                width: 100%;
+                border: 1px solid #c7c7c7;
+                box-shadow: 2px 2px 4px #c7c7c7;
+                margin-top: 10px;
+            }
+            .taskTypeList{
+                width: 100%;
+                font-size: 14px;
+                color: #4c5260;
+            }
+            .hrStyle {
+                border: none;
+                border-top: 1px solid #c7c7c7;
+            }
+            .taskTypeTip{
+                font-size: 14px;
+                padding-left: 1.5px;
+            }
+            .searchKeyWord_li{
+                border-bottom:1px solid #c7c7c7;
+                padding-bottom:15px;
+                margin-bottom:15px;
+            }
+.searchKeyWord_li:last-child{
+    border:none;
+    padding-bottom:0px;
+}
+
+.KeyWordInput{
+    width:170px;
+    height:24px;
+    border:1px solid #4c5260;
+}
+.searchInput{
+    width:60px;
+    height:24px;
+    color:#4c5260;
+    border:1px solid #4c5260;
+}
+.addMoreSearchBtn{
+    position:relative;
+    float:right;
+    margin-right:15px;
+}
+.addSearchBtn{
+    background:none;
+    width:24px; 
+    height:24px;
+    border-radius:50%;
+    border:1px solid #4c5260;
+    font-size:13px;
+    margin-top:2px;
+    float: left;
+}
+.addSearchIcon{
+   font-size:26px;
+   font-weight:lighter;
+   position:absolute;
+   left:3px;
+   color:#666;
+   cursor:pointer;
+   top:-4px;
+}
+.deleteSearchBtn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-right: 7px;
+    float: right;
+}
+
+    .deleteSearchBtn > img {
+        width:27px;
+    }
+.txtEvaluationMsg{
+    resize :none;
+    width:400px;
+    height:100px;
+    font-size:12px;
+    border:1px solid #4c5260;
+}
+.dangerTip{
+    font-size: 12px;
+    color: #a7a7a7;
+    float: right;
+    line-height: 13px;
+    width: 370px;
+    margin-right:30px;
+}
+.taskImg{
+    display: inline-block;
+    margin-left: 15px;
+}
+.taskTip{
+    color:#a7a7a7;
+    font-size:12px;
+}
+/*任务类型  ----附加*/
+.addConditionType{
+    margin-top:15px;
+}
+.addTypeBlock{
+    float: left;
+}
+.addTypeBlock label{
+    margin-right:15px;
+    font-size: 12px;
+}
+.addTypeBlock span{
+    margin-left:-5px;
+}
+
+/*4.推送设置*/
+.pushSetDiv{
+    margin-top:10px;
+    border:1px solid #c7c7c7;
+    box-shadow:2px 2px 4px #c7c7c7;
+}
+.beginTime{
+    font-size:12px;
+    border:1px solid #333;
+    width: 120px;
+    height:24px;
+    color: #4c5260;
+}
+.pushCheckBox{
+    width: 50%;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 3px;
+}
+.pushCheckBox label{
+    position: absolute;
+    top:5px;
+    left: 25px;
+    font-size: 12px;
+    color: #333;
+}
+.pushTip{
+    float: right;
+    margin-right: 50px;
+    font-size:12px;
+    color:#a7a7a7;
+    margin-top:5px;
+}
+.addIconStyle{
+    font-size: 26px;
+    position: absolute;
+    font-weight: lighter;
+    left: 3px;
+    top:-8px;
+    color: #666;
+    cursor: pointer;
+}
+.pushTimeBlock{
+    padding-left:15px;
+    height:45px;
+    line-height:45px;
+    border-top:1px solid #c7c7c7;
+}
+    .pushTimeBlock>div{
+        display:inline-block;
+        margin-right:15px;
+    }
+    .addMoreTimeBtn{
+    margin-top:10px;
+    position: relative;
+    float: right;
+}
+    .pushInput {
+        width: 80px;
+        height: 24px;
+        border: 1px solid #333;
+        margin-right: 5px;
+    }
+
+.allTaskCount{
+    text-decoration:underline;
+    color:#f68948;
+}
+
+/*设置下单时间*/
+.setOrderTime{
+    height:30px;
+    line-height: 30px;
+    border-top:1px solid #c7c7c7;
+    border-bottom: 1px solid #c7c7c7;
+    cursor: pointer;
+}
+#reBuyStyle_ul li{
+    margin:5px 15px;
+}
+
+input[name="reBuyWay"]{
+    width: 16px;
+    height:16px;
+    vertical-align: top;
+}
+input[type='radio']:checked {
+    display: inline-block;
+    border: 1px solid #aa0000;
+    border-radius: 50%;
+    position: inherit;
+}
+input[name="reBuyWay"]:checked{
+position: relative;
+}
+input[name='reBuyWay']:checked:before {
+    width: 8px;
+    height: 8px;
+    top: 3px;
+    left: 3px;
+}
+.orderSpan{
+    padding-left:1.5px;
+    font-size:12px;
+}
+.orderTip{
+    font-size: 12px;
+    color: #a7a7a7;
+}
+.order_select{
+    width:50px;
+    height:20px;
+    border:1px solid #333;
+}
+
+/*5.增值服务*/
+.addServiceDiv,.otherRequiresDiv{
+    width: 100%;
+    margin-top:10px;
+    border:1px solid #c7c7c7;
+    box-shadow: 2px 2px 4px #c7c7c7;
+}
+.rewardDiv{
+    margin-bottom: 15px;
+}
+.otherSetBlock{
+    border-top:1px solid #c7c7c7;
+    border-bottom:1px solid #c7c7c7;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+}
+.arrowIcon{
+    float: right;
+    font-size: 20px;
+    margin-right: 15px;
+    color: #000;
+    font-weight: lighter;
+    font-family: monospace;
+}
+/*增值服务 =====千人千面*/
+#otherSet_ul li{
+    margin:5px 15px;
+}
+#classList label,#areaList label{
+    font-size: 12px;
+    margin-left: 15px;
+}
+.ageLabel{
+    margin-left: 10px;
+    font-size: 12px;
+}
+.ageLabel >input{
+    width: 16px;
+    height: 16px;
+}
+.ageLabel >input:checked{
+    position: relative;
+    width: 16px;
+    height: 16px;
+}
+.ageLabel >input:checked:before{
+    width: 8px;
+    height:8px;
+}
+
+/*附加要求*/
+.otherMsg{
+    width: 280px;
+    height:100px;
+    resize: none;
+    border:1px solid #4c5260;
+    color: #4c5260;
+}
+.remarkDiv{
+    display: flex;
+    display: -webkit-flex;
+    align-items: space-around;
+}
+.remarkDiv>div{
+    /*flex: 1 0 50%;*/
+}
+.remarkSpan{
+    margin-left: 5px;
+    flex-basis: 460px;
+    height: 110px;
+    line-height: 20px;
+    font-size: 12px;
+    color:#a7a7a7;
+}
+.remarkSpan span{
+    display: inline-block;
+    margin-top:30px;
+}
+/*按钮*/
+.sumitBtn{
+    margin-top: 15px;
+    text-align: center;
+}
+.preStepBtn {
+    border: none;
+    width: 100px;   
+    border-radius: 50px;
+    height: 36px;
+    font-size: 16px;
+    margin-right: 15px;
+    color: #fff;
+    background-color: #4c5260;
+    cursor: pointer;
+}
+.nextStepBtn {
+    border: none;
+    width: 100px;
+    border-radius: 50px;
+    height: 36px;
+    font-size: 16px;
+    margin-right: 15px;
+    color: #fff;
+    background-color: #aa0000;
+    cursor: pointer;
+}
+
+/*支付页面*/
+.orderFeeDetail{
+    margin-top:10px;
+}
+.orderFeeDetail table{
+    width: 100%;
+    text-align: center;
+}
